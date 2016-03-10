@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Budget</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="monthly_budget">Monthly Budget</string>
+    <string name="yearly_budget">Yearly Budget</string>
+    <string name="weekly_budget">Weekly Budget</string>
+    <string name="daily_budget">Daily Budget</string>
+
+    <string-array name="category">
+        <item>Food</item>
+        <item>Clothing</item>
+        <item>Home</item>
+    </string-array>
+</resources>

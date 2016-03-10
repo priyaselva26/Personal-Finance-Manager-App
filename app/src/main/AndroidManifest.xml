@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.pri.budget" >
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_start"
+        android:label="Personal Finance Manager"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="Personal Finance Manager" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".addbudget"
+            >
+        </activity>
+        <activity
+            android:name=".List_activity"
+             >
+        </activity>
+        <activity
+            android:name=".List_activity_income"
+            >
+        </activity>
+        <activity android:name=".MainActivity1"
+            android:label="Budget" >
+        </activity>
+        <activity android:name=".Expenses_activity"
+            android:label="New Expense" >
+        </activity>
+        <activity android:name=".Income_activity"
+            android:label="New Inome" >
+        </activity>
+        <activity android:name=".u_expenses"
+            android:label="Update Expense" >
+        </activity>
+        <activity android:name=".u_incomes"
+            android:label="Upate Income" >
+        </activity>
+
+        <activity
+            android:name=".addexpense"
+            android:label="Add Expense"></activity>
+        <activity
+            android:name=".addincome"
+            android:label="Add Income"></activity>
+
+
+
+
+        <activity
+            android:name=".Budget_activity"
+            >
+        </activity>
+
+    </application>
+
+</manifest>
