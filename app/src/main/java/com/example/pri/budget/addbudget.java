@@ -23,6 +23,7 @@ import java.util.Calendar;
 public class Addbudget extends ActionBarActivity implements View.OnClickListener {
     // Declare UI elements
     String data;
+    double percent;
     DBhelper helper;
     SQLiteDatabase db;
     EditText txtBudget;
@@ -90,14 +91,11 @@ public class Addbudget extends ActionBarActivity implements View.OnClickListener
         double cat_bud =0;
 
         if (res.moveToNext()) {
-           // if (res.getCount() == 0) {
-         //       Toast.makeText(this, "Budget hasn't been allocated", Toast.LENGTH_LONG).show();
-          //  }
-          //  else {
+
                 cat_bud = Double.parseDouble(res.getString(1)) * Double.parseDouble(bud) /100.0;
             }
 
-       // }
+
 
 
 
@@ -164,6 +162,17 @@ public class Addbudget extends ActionBarActivity implements View.OnClickListener
         if (c.moveToFirst()) {
             data = c.getString(c.getColumnIndex(DBhelper.Amount)); //get the amount of particular description into the textview
             txtMyBudget.setText(data);
+
+            Calendar ca = Calendar.getInstance();
+            int month1 = ca.get(Calendar.MONTH);
+
+            Cursor res = helper.getMonthlyBudget(month1+1);
+
+            if(res.moveToNext()){
+                percent = Double.parseDouble(data) * 100.0  / Double.parseDouble(res.getString(1));
+                txtBudget.setText(String.valueOf(percent));
+            }
+
 
             balance = Double.parseDouble(data);
 
