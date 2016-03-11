@@ -82,8 +82,6 @@ public class Addbudget extends ActionBarActivity implements View.OnClickListener
         String bud = txtBudget.getText().toString();
 
 
-        //Cursor res = db.rawQuery("select amount from " + DBhelper.TABLE_NAME + " where YEAR  = '2016' " + " and MONTH = '1'", null);
-
         Calendar c = Calendar.getInstance();
         int month1 = c.get(Calendar.MONTH);
 
@@ -91,15 +89,15 @@ public class Addbudget extends ActionBarActivity implements View.OnClickListener
 
         double cat_bud =0;
 
-        while (res.moveToNext()) {
-            if (res.getCount() == 0) {
-                Toast.makeText(this, "Budget hasn't been allocated", Toast.LENGTH_LONG).show();
-            }
-            else {
+        if (res.moveToNext()) {
+           // if (res.getCount() == 0) {
+         //       Toast.makeText(this, "Budget hasn't been allocated", Toast.LENGTH_LONG).show();
+          //  }
+          //  else {
                 cat_bud = Double.parseDouble(res.getString(1)) * Double.parseDouble(bud) /100.0;
             }
 
-        }
+       // }
 
 
 
@@ -157,7 +155,7 @@ public class Addbudget extends ActionBarActivity implements View.OnClickListener
     //fetching budget data from database
     private void fetchBudgetData() {
         db = helper.getReadableDatabase();
-        double total = 0.0;
+
         double balance = 0.0;
 
 
@@ -171,14 +169,12 @@ public class Addbudget extends ActionBarActivity implements View.OnClickListener
 
             txtCatBal.setText(String.valueOf(balance));
 
-            ArrayList<Expence> expences = new DBhelper(this).getCategoryExpences(category);
-            if (expences != null) {
+            double totalExp = new DBhelper(this).getCategoryExpences(category);
+            if (totalExp != 0) {
 
-                for (Expence ex : expences) {
-                    total = total + Double.parseDouble(ex.getAmount());
-                }
-                txtCatExp.setText(String.valueOf(total));
-                balance = Double.parseDouble(data) - total;
+
+                txtCatExp.setText(String.valueOf(totalExp));
+                balance = Double.parseDouble(data) - totalExp;
                 txtCatBal.setText(String.valueOf(balance));
 
 

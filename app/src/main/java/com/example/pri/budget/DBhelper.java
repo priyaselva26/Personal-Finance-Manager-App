@@ -171,36 +171,30 @@ public class DBhelper extends SQLiteOpenHelper {
     }
 
     //get the category expenses
-    public ArrayList<Expence> getCategoryExpences(String category) {
+    public double getCategoryExpences(String category) {
         ArrayList<Expence> expences = new ArrayList<Expence>();
 
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int tmonth = c.get(Calendar.MONTH);
         int month = tmonth + 1;
+        double total = 0.0;
+        String amount;
 
-        String query = "SELECT * FROM " + TABLE3 + " WHERE " + EX_YEAR + "='" + year + "' and " + EX_MONTH + "='" + month + "' and " + CATEGORY + "='" + category + "'";
+        String query = "SELECT SUM(amount1) FROM " + TABLE3 + " WHERE " + EX_YEAR + "='" + year + "' and " + EX_MONTH + "='" + month + "' and " + CATEGORY + "='" + category + "'";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            do {
-                Expence ex = new Expence();
-                ex.setCategory(category);
-                ex.setDate(cursor.getString(1));
-                ex.setDescription(cursor.getString(3));
-                ex.setStatus(cursor.getString(4));
-                ex.setYear(cursor.getString(5));
-                ex.setMonth(cursor.getString(6));
-                ex.setAmount(cursor.getString(7));
-                expences.add(ex);
-            }
-            while (cursor.moveToNext());
-        } else {
-            return null;
+        if (cursor.moveToNext()) {
+
+                amount = cursor.getString(0);
+
         }
-        return expences;
+        else {
+            return total;
+        }
+        return Double.parseDouble(amount);
     }
 
     public boolean insertMonthlyBudget(int month, double amount){

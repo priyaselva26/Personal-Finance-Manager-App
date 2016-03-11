@@ -44,8 +44,8 @@ public class MonthlyBudget extends Activity implements View.OnClickListener {
 
 
 
-        AddData();
-        viewAll();
+        setMonthlyBudget();
+        viewMBudget();
         setText();
 
 
@@ -68,7 +68,7 @@ public class MonthlyBudget extends Activity implements View.OnClickListener {
     }
 
 
-    public  void  AddData(){
+    public  void  setMonthlyBudget(){
         b_set.setOnClickListener(
                 new View.OnClickListener() {
 
@@ -121,7 +121,7 @@ public class MonthlyBudget extends Activity implements View.OnClickListener {
     }
 
 
-    public  void  viewAll(){
+    public  void  viewMBudget(){
         b_view.setOnClickListener(
                 new View.OnClickListener() {
 
