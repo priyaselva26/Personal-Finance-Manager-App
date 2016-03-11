@@ -19,7 +19,7 @@
 
 
         <activity
-            android:name=".addbudget"
+            android:name=".Addbudget"
             >
         </activity>
         <activity
@@ -30,7 +30,7 @@
             android:name=".List_activity_income"
             >
         </activity>
-        <activity android:name=".MainActivity1"
+        <activity android:name=".MonthlyBudget"
             android:label="Budget" >
         </activity>
         <activity android:name=".Expenses_activity"
@@ -39,18 +39,18 @@
         <activity android:name=".Income_activity"
             android:label="New Inome" >
         </activity>
-        <activity android:name=".u_expenses"
+        <activity android:name=".UpdateExpenses"
             android:label="Update Expense" >
         </activity>
-        <activity android:name=".u_incomes"
+        <activity android:name=".UpdateIncomes"
             android:label="Upate Income" >
         </activity>
 
         <activity
-            android:name=".addexpense"
+            android:name=".Addexpense"
             android:label="Add Expense"></activity>
         <activity
-            android:name=".addincome"
+            android:name=".Addincome"
             android:label="Add Income"></activity>
 
 

@@ -14,7 +14,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class addexpense extends ActionBarActivity {
+public class Addexpense extends ActionBarActivity {
     // Declare UI elements
     DBhelper helper;
     SQLiteDatabase db;
@@ -107,7 +106,7 @@ public class addexpense extends ActionBarActivity {
 
 
             Toast.makeText(this, "Expenses add Successfully", Toast.LENGTH_LONG).show(); //success message
-            Intent st = new Intent(addexpense.this, addexpense.class);
+            Intent st = new Intent(Addexpense.this, Addexpense.class);
             clear();
             startActivity(st);
 

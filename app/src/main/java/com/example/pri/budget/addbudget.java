@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class addbudget extends ActionBarActivity implements View.OnClickListener {
+public class Addbudget extends ActionBarActivity implements View.OnClickListener {
     // Declare UI elements
     String data;
     DBhelper helper;
@@ -38,7 +38,7 @@ public class addbudget extends ActionBarActivity implements View.OnClickListener
 
         btnAB = (Button) findViewById(R.id.btnAddBudget);
         btnAB.setOnClickListener(this);
-        helper = new DBhelper(addbudget.this);
+        helper = new DBhelper(Addbudget.this);
         txtCategory = (TextView) findViewById(R.id.txtCat);
         txtMyBudget = (TextView) findViewById(R.id.txtMyBud);
         txtBudget = (EditText) findViewById(R.id.txtBudget);
@@ -56,7 +56,7 @@ public class addbudget extends ActionBarActivity implements View.OnClickListener
         category = data_from_list.getString("passed data key"); // retrieve the data using keyName
         txtCategory.setText(category);
 
-        fetchData2();
+        fetchBudgetData();
     }
 
     //clear the edit text fields
@@ -116,9 +116,9 @@ public class addbudget extends ActionBarActivity implements View.OnClickListener
                 db.update(DBhelper.TABLE2, value, " " + DBhelper.Description + "='" + category + "'", null); //update the values
                 db.close();
                 Toast.makeText(this, "Updated Successfully", Toast.LENGTH_LONG).show(); //success message
-                fetchData2();
+                fetchBudgetData();
 
-                Intent i = new Intent(addbudget.this, MainActivity.class); //redirecting to another activity
+                Intent i = new Intent(Addbudget.this, MainActivity.class); //redirecting to another activity
                 startActivity(i);
                 clearfield();
             }
@@ -140,8 +140,8 @@ public class addbudget extends ActionBarActivity implements View.OnClickListener
                 clearfield();//to clear the fields
                 Toast.makeText(this, "Budget added Successfully", Toast.LENGTH_LONG).show();
 
-                fetchData2();
-                Intent i = new Intent(addbudget.this, MainActivity.class); //redirecting to another activity
+                fetchBudgetData();
+                Intent i = new Intent(Addbudget.this, MainActivity.class); //redirecting to another activity
                 startActivity(i);
             }else{
                 Toast.makeText(getApplicationContext(), "Enter a valid amount!", Toast.LENGTH_LONG).show(); //error message
@@ -154,8 +154,8 @@ public class addbudget extends ActionBarActivity implements View.OnClickListener
 
     }
 
-    //fetching data from database
-    private void fetchData2() {
+    //fetching budget data from database
+    private void fetchBudgetData() {
         db = helper.getReadableDatabase();
         double total = 0.0;
         double balance = 0.0;

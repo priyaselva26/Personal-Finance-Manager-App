@@ -66,7 +66,7 @@ public class MycustomAdapter extends BaseAdapter implements ListAdapter {
                 int selected_id = row.getId();
                 String budget = row.getName();
 
-                Intent myIntent = new Intent(context, addbudget.class); //Redirecting to another activity
+                Intent myIntent = new Intent(context, Addbudget.class); //Redirecting to another activity
                 myIntent.putExtra("passed data key", budget); // pass your values and retrieve them in the other Activity using keyName
                 myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(myIntent);

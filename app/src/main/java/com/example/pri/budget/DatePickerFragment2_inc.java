@@ -34,8 +34,8 @@ public class DatePickerFragment2_inc extends DialogFragment implements DatePicke
 
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        u_incomes.SELECTED_DATE = Integer.toString(year) + "-" + Integer.toString(monthOfYear + 1) + "-" + Integer.toString(dayOfMonth);
-        u_incomes.initializeDate();
+        UpdateIncomes.SELECTED_DATE = Integer.toString(year) + "-" + Integer.toString(monthOfYear + 1) + "-" + Integer.toString(dayOfMonth);
+        UpdateIncomes.initializeDate();
 
     }
 

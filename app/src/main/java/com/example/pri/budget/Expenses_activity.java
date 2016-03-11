@@ -57,7 +57,7 @@ public class Expenses_activity extends Activity {
         final TextView menubtn2 = (TextView) findViewById(R.id.e2);
         menubtn2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent st = new Intent(Expenses_activity.this, addexpense.class); //redirecting to another activity
+                Intent st = new Intent(Expenses_activity.this, Addexpense.class); //redirecting to another activity
                 startActivity(st);
             }
         });

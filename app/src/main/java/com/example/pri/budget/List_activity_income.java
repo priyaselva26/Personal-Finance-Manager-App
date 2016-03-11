@@ -67,7 +67,7 @@ public class List_activity_income extends ActionBarActivity {
                         selected_id = row1.getString(0);
                         ex = row1.getString(0);
 
-                        Intent myIntent = new Intent(List_activity_income.this, u_incomes.class);//redirecting to another activity
+                        Intent myIntent = new Intent(List_activity_income.this, UpdateIncomes.class);//redirecting to another activity
                         myIntent.putExtra("data key", ex);// pass your values and retrieve them in the other Activity using keyName
                         startActivity(myIntent);
                         fetchData3();

@@ -37,7 +37,7 @@ public class MainActivity extends TabActivity {
         // that will be opened when particular Tab will be selected
 
         tab1.setIndicator("Budget");
-        Intent intent1 = new Intent(MainActivity.this, MainActivity1.class);
+        Intent intent1 = new Intent(MainActivity.this, MonthlyBudget.class);
         intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         tab1.setContent(new Intent(intent1));
 

@@ -57,7 +57,7 @@ public class Income_activity extends Activity {
         final TextView menubtn2 = (TextView) findViewById(R.id.e2);
         menubtn2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent st = new Intent(Income_activity.this, addincome.class); //redirecting to another activity
+                Intent st = new Intent(Income_activity.this, Addincome.class); //redirecting to another activity
                 startActivity(st);
             }
         });

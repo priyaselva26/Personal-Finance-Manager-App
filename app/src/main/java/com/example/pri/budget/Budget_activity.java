@@ -64,7 +64,7 @@ public class Budget_activity extends Activity implements View.OnClickListener {
                 selected_id = row.getId();
                 budget = row.getName();
 
-                Intent myIntent = new Intent(Budget_activity.this, addbudget.class); //redirecting to another activity
+                Intent myIntent = new Intent(Budget_activity.this, Addbudget.class); //redirecting to another activity
                 myIntent.putExtra("passed data key", budget); // pass your values and retrieve them in the other Activity using keyName
                 startActivity(myIntent);
             }

@@ -1,8 +1,8 @@
 package com.example.pri.budget;
 
 /**
- * Created by pri on 2/1/2016.
- * Purpose : Updates expense details
+ * Created by pri on 2/4/2016.
+ * Purpose : Updates income details
  */
 
 import android.app.Activity;
@@ -19,8 +19,9 @@ import android.widget.Toast;
 
 
 
-public class u_expenses extends Activity implements View.OnClickListener {
-//Declare UI elements
+
+public class UpdateIncomes extends Activity implements View.OnClickListener {
+    //Declare UI elements
     public static String SELECTED_DATE = null;
 
     String data2, data3, data4, data5;
@@ -35,12 +36,12 @@ public class u_expenses extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.uexpenses_activity);
+        setContentView(R.layout.uincome_activity);
 
         btn = (Button) findViewById(R.id.btnSave);
         btn.setOnClickListener(this);
 
-        helper = new DBhelper(u_expenses.this);
+        helper = new DBhelper(UpdateIncomes.this);
 
 
         Bundle data_from_list = getIntent().getExtras();
@@ -57,7 +58,7 @@ public class u_expenses extends Activity implements View.OnClickListener {
 
     private void fetchData4() {
         db = helper.getReadableDatabase();
-        Cursor c = db.query(DBhelper.TABLE3, null, DBhelper.ID1 + "='" + value_in_tv + "'", null, null, null, null); //get the items from the database for the particular id
+        Cursor c = db.query(DBhelper.TABLE4, null, DBhelper.ID1 + "='" + value_in_tv + "'", null, null, null, null); //get the items from the database for the particular id
         if (c.moveToFirst()) {
             data2 = c.getString(c.getColumnIndex(DBhelper.CATEGORY)); //get the values from the database
             data3 = c.getString(c.getColumnIndex(DBhelper.DETAIL));
@@ -100,8 +101,9 @@ public class u_expenses extends Activity implements View.OnClickListener {
 
     //method for pick data on button click
     public void pickDate(View v) {
-        android.app.DialogFragment newFragment = new DatePickerFragment2();
+        android.app.DialogFragment newFragment = new DatePickerFragment2_inc();
         newFragment.show(getFragmentManager(), "datePicker");
+
     }
 
 
@@ -118,16 +120,14 @@ public class u_expenses extends Activity implements View.OnClickListener {
         value.put(DBhelper.DETAIL, disc.getText().toString());  //get data from the textfields to database
         value.put(DBhelper.AMOUNT1, rs.getText().toString());
         value.put(DBhelper.DATE_T1, date.getText().toString());
-        value.put(DBhelper.EX_YEAR, SELECTED_DATE.split("-")[0]);  //Split the date to get the year
-        value.put(DBhelper.EX_MONTH, SELECTED_DATE.split("-")[1]);  //split the date to get month
         if (isValidnum2(Rs) && isValidWord(desc)) {
             db = helper.getWritableDatabase();
-            db.update(DBhelper.TABLE3, value, " " + DBhelper.ID1 + "='" + value_in_tv + "'", null); //update the values to the database
+            db.update(DBhelper.TABLE4, value, " " + DBhelper.ID1 + "='" + value_in_tv + "'", null); //update the values to the database
             db.close();
             Toast.makeText(this, "Updated Successfully", Toast.LENGTH_LONG).show(); //success message
 
 
-            Intent i = new Intent(u_expenses.this, MainActivity.class); //redirecting another activity
+            Intent i = new Intent(UpdateIncomes.this, MainActivity.class); //redirecting another activity
             startActivity(i);
             clear(); //call the clear method
         } else {

@@ -67,7 +67,7 @@ public class List_activity extends ActionBarActivity {
                         selected_id = row1.getString(0);
                         ex = row1.getString(0);
 
-                        Intent myIntent = new Intent(List_activity.this, u_expenses.class);//redirecting to another activity
+                        Intent myIntent = new Intent(List_activity.this, UpdateExpenses.class);//redirecting to another activity
                         myIntent.putExtra("data key", ex);// pass your values and retrieve them in the other Activity using keyName
                         startActivity(myIntent);
                         fetchData3();

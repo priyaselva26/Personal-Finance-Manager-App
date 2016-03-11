@@ -203,7 +203,7 @@ public class DBhelper extends SQLiteOpenHelper {
         return expences;
     }
 
-    public boolean insertData(int month, double amount){
+    public boolean insertMonthlyBudget(int month, double amount){
         long result;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -216,22 +216,15 @@ public class DBhelper extends SQLiteOpenHelper {
 
         if (res.getCount() == 0) {
             result = db.insert(TABLE6,null,contentValues);
-
         }
         else {
-           // result = db.update(TABLE_NAME,contentValues, COL_2+"="+month + " AND " + COL_1 + "="+year, null);
             result = db.update(TABLE6,contentValues, COL_2+"="+month , null);
         }
-
-
-        //long result = db.insert(TABLE_NAME,null,contentValues);
 
         if(result == -1)
             return  false;
         else
             return true;
-
-
     }
 
     public Cursor getMonthlyBudget(int month){

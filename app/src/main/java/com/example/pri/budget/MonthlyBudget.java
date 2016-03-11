@@ -20,7 +20,7 @@ import android.widget.Toast;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
-public class MainActivity1 extends Activity implements View.OnClickListener {
+public class MonthlyBudget extends Activity implements View.OnClickListener {
 
     DBhelper myDb;
     EditText m_budget;
@@ -62,13 +62,13 @@ public class MainActivity1 extends Activity implements View.OnClickListener {
                         int month = c.get(Calendar.MONTH);
 
 
-                        boolean isInserted = myDb.insertData(month + 1, Double.parseDouble(m_budget.getText().toString()));
+                        boolean isInserted = myDb.insertMonthlyBudget(month + 1, Double.parseDouble(m_budget.getText().toString()));
 
                         if (isInserted == true) {
-                            Toast.makeText(MainActivity1.this, "Budget has been set", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MonthlyBudget.this, "Budget has been set", Toast.LENGTH_LONG).show();
 
                         } else
-                            Toast.makeText(MainActivity1.this, "Cannot proceed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MonthlyBudget.this, "Cannot proceed", Toast.LENGTH_LONG).show();
 
 
                         Cursor res = myDb.calBudget(month + 1);

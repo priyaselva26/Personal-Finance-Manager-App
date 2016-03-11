@@ -13,7 +13,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,7 +22,7 @@ import java.util.ArrayList;
 
 
 
-public class addincome extends ActionBarActivity {
+public class Addincome extends ActionBarActivity {
     // Declare UI elements
     DBhelper helper;
     SQLiteDatabase db;
@@ -104,7 +103,7 @@ public class addincome extends ActionBarActivity {
             db.close();
 
             Toast.makeText(this, "Income add Successfully", Toast.LENGTH_LONG).show(); //success message
-            Intent st = new Intent(addincome.this, Income_activity.class);
+            Intent st = new Intent(Addincome.this, Income_activity.class);
             startActivity(st);
 
         } else {
