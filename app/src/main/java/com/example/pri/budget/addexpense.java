@@ -20,8 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
-
-
+import java.util.Calendar;
 
 
 public class addexpense extends ActionBarActivity {
@@ -105,10 +104,15 @@ public class addexpense extends ActionBarActivity {
             db.insert(DBhelper.TABLE3, null, values); //Insert values to the database
             db.close();
 
+
+
             Toast.makeText(this, "Expenses add Successfully", Toast.LENGTH_LONG).show(); //success message
             Intent st = new Intent(addexpense.this, addexpense.class);
             clear();
             startActivity(st);
+
+            checkLimit(category);
+
 
         } else {
             if (!isValidnum2(Rs)) {
@@ -121,17 +125,20 @@ public class addexpense extends ActionBarActivity {
 
         }
 
-        checkLimit(category);
+
 
 
     }
 
     /**check the expenses of particular category whether it's exceed the budget limit of particular category */
     public void checkLimit(String category){
-        boolean rate = new DBhelper(getApplicationContext()).checkBudget(category);
+        Calendar c = Calendar.getInstance();
+        int month = c.get(Calendar.MONTH);
 
-        if (rate) {
-            showMessage("Warning", "Exceeded");
+        String rate = new DBhelper(getApplicationContext()).checkBudget(category,month+1);
+
+        if (rate != null) {
+            showMessage("Warning", rate + " Expenses are Exceeded");
 
         } else {
             System.out.println("false");

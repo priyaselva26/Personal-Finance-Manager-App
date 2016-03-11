@@ -182,8 +182,6 @@ public class addbudget extends ActionBarActivity implements View.OnClickListener
                 txtCatBal.setText(String.valueOf(balance));
 
 
-            } else {
-                Toast.makeText(getApplicationContext(), "Cannot calculte !", Toast.LENGTH_LONG).show(); //error message
             }
 
 

@@ -152,21 +152,22 @@ public class DBhelper extends SQLiteOpenHelper {
 
 
 //check the budget amount with expenses
-    public boolean checkBudget(String cat) {
+    public String checkBudget(String cat, int month) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT e.category " +
                 "FROM Expenses e, Budget b " +
-                "WHERE e.category=b.description and e.category='" + cat +
+                "WHERE e.category=b.description and e.exmonth = " + month + " and e.category='" + cat +
                 "' GROUP BY e.category " +
                 "HAVING sum(amount1)>b.amount";
 
 
         Cursor c = db.rawQuery(query, null);
         if (c.moveToNext()) {
-            return true;
+            String category = c.getString(0);
+            return category;
         }
 
-        return false;
+        return null;
     }
 
     //get the category expenses

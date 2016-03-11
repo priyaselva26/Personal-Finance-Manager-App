@@ -124,7 +124,7 @@ public class MainActivity1 extends Activity implements View.OnClickListener {
                         }
                         StringBuffer buffer = new StringBuffer();
                         while (res.moveToNext()) {
-                            cMonth = Integer.parseInt(res.getString(1)) - 1;
+                            cMonth = Integer.parseInt(res.getString(0)) - 1;
                             month = getMonthForInt(cMonth);
 
 
@@ -174,7 +174,7 @@ public class MainActivity1 extends Activity implements View.OnClickListener {
     }
 
     String getMonthForInt(int num) {
-        String month = "wrong";
+        String month = " ";
         DateFormatSymbols dfs = new DateFormatSymbols();
         String[] months = dfs.getMonths();
         if (num >= 0 && num <= 11 ) {
