@@ -46,7 +46,24 @@ public class MonthlyBudget extends Activity implements View.OnClickListener {
 
         AddData();
         viewAll();
+        setText();
 
+
+    }
+
+    public void setText(){
+        Calendar c = Calendar.getInstance();
+        int month = c.get(Calendar.MONTH);
+
+
+        Cursor res = myDb.getMonthlyBudget(month+1);
+
+        if(res.moveToNext()){
+            m_budget.setText(res.getString(1));
+        }
+        else{
+            m_budget.setText("0");
+        }
 
     }
 
@@ -60,7 +77,6 @@ public class MonthlyBudget extends Activity implements View.OnClickListener {
                         Calendar c = Calendar.getInstance();
                         //int year = c.get(Calendar.YEAR);
                         int month = c.get(Calendar.MONTH);
-
 
                         boolean isInserted = myDb.insertMonthlyBudget(month + 1, Double.parseDouble(m_budget.getText().toString()));
 

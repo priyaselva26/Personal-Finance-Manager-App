@@ -18,14 +18,5 @@
         android:ems="20"
         android:padding="10dp" />
 
-    <TextView
-        android:id="@+id/delete_btn"
-        android:layout_width="0dp"
-        android:ems="5"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:gravity="right"
-        android:drawableRight="@drawable/delete"
-        android:layout_weight="0.25"
-        android:padding="10dp"/>
+
 </LinearLayout>

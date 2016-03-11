@@ -72,39 +72,8 @@ public class MycustomAdapter extends BaseAdapter implements ListAdapter {
                 context.startActivity(myIntent);
             }
         });
-        SQLiteDatabase db = new DBhelper(context.getApplicationContext()).getWritableDatabase();
-        //Handle buttons and add onClickListeners
-        TextView deleteBtn = (TextView) view.findViewById(R.id.delete_btn);
 
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (context instanceof Budget_activity) {
-                    new AlertDialog.Builder((Budget_activity) context) //Alert dialog box
-                            .setTitle("Delete Category")
-                            .setMessage("Are you sure you want to Delete this Category?")
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    SQLiteDatabase db = new DBhelper(context.getApplicationContext()).getWritableDatabase();
-                                    db.delete(DBhelper.TABLE1, DBhelper.C_ID + "=?", new String[]{Integer.toString(list.get(position).getId())});
-                                    db.close();
-                                    list.remove(position);  //delete the item
-                                    notifyDataSetChanged(); //refersh the listview
-
-                                }
-                            })
-                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // do nothing
-                                }
-                            })
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();  //show dialog box
-
-                }
-            }
-        });
-        return view;
+       return view;
     }
+
 }

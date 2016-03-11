@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffd2db">
+    android:background="#FCF0E7">
 
 
 
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="UPDATE"
         android:layout_marginTop="19dp"
-        android:background="#FF4081"
+        android:background="#FF9999"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -22,7 +22,7 @@
         android:layout_width="400px"
         android:layout_height="wrap_content"
         android:text="DELETE"
-        android:background="#FF4081"
+        android:background="#FF9999"
         android:layout_below="@+id/Update"
         android:layout_alignLeft="@+id/Update"
         android:layout_alignStart="@+id/Update"
