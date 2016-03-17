@@ -52,6 +52,23 @@
         <activity
             android:name=".Addincome"
             android:label="Add Income"></activity>
+        <activity
+            android:name=".SearchActivity"
+            android:label="Search"></activity>
+        <activity
+            android:name=".TodaysTransaction"
+            android:label="Today's Transaction"></activity>
+
+        <activity android:name=".VoiceRecognitionDemo"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Just"
+            android:label="SearchTry"></activity>
 
 
 

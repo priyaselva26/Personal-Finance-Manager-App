@@ -32,6 +32,7 @@ public class MainActivity extends TabActivity {
         TabHost.TabSpec tab2 = tabHost.newTabSpec("2");
         TabHost.TabSpec tab3 = tabHost.newTabSpec("3");
         TabHost.TabSpec tab4 = tabHost.newTabSpec("4");
+        TabHost.TabSpec tab5 = tabHost.newTabSpec("5");
 
         // Set the Tab name and Activity
         // that will be opened when particular Tab will be selected
@@ -60,6 +61,17 @@ public class MainActivity extends TabActivity {
         tab4.setContent(new Intent(intent4));
 
 
+     /*   tab5.setIndicator("SearchActivity");
+        Intent intent5 = new Intent(MainActivity.this, SearchActivity.class);
+        intent5.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        tab5.setContent(new Intent(intent5));
+*/
+        tab5.setIndicator("Today");
+        Intent intent5 = new Intent(MainActivity.this, TodaysTransaction.class);
+        intent5.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        tab5.setContent(new Intent(intent5));
+
+
 
 
 
@@ -69,6 +81,7 @@ public class MainActivity extends TabActivity {
         tabHost.addTab(tab2);
         tabHost.addTab(tab3);
         tabHost.addTab(tab4);
+        tabHost.addTab(tab5);
 
         //tabHost.addTab(tab3);
         tabHost.getTabWidget().setBackgroundColor(Color.parseColor("#FFFFFF"));

@@ -10,8 +10,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class DBhelper extends SQLiteOpenHelper {
@@ -23,7 +25,9 @@ public class DBhelper extends SQLiteOpenHelper {
     static final String TABLE2 = "Budget";
     static final String TABLE3 = "Expenses";
     static final String TABLE4 = "Incomes";
+    static final String SUBCAT = "Sub_Categories";
     public final String TABLE6 = "month_budget_table";
+
 
     static final String C_ID = "_id";
     static final String Name = "name";
@@ -39,6 +43,10 @@ public class DBhelper extends SQLiteOpenHelper {
     public static final String STATUS = "status";
     public static final String EX_YEAR = "exyear";
     public static final String EX_MONTH = "exmonth";
+
+    public static final String CATID = "cat_id";
+    public static final String CATNAME = "categoryName";
+    public static final String SUBCATNAME = "subCatName";
 
 
     public  static  final  String COL_1 = "YEAR";
@@ -60,6 +68,10 @@ public class DBhelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE2 + "(" + B_ID
                 + " INTEGER PRIMARY KEY AUTOINCREMENT," + Description + " text,"
                 + Amount + " text, FOREIGN KEY (" + Description + ") REFERENCES " + TABLE1 + "(" + Name + "));");
+
+        db.execSQL("CREATE TABLE " + SUBCAT + "(" + CATID
+                + " INTEGER PRIMARY KEY AUTOINCREMENT," + CATNAME + " text,"
+                + SUBCAT + " text, FOREIGN KEY (" + CATNAME + ") REFERENCES " + TABLE1 + "(" + Name + "));");
 
         db.execSQL("CREATE TABLE " + TABLE3 + " ( "
                 + ID1 + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -106,6 +118,10 @@ public class DBhelper extends SQLiteOpenHelper {
         db.execSQL("insert into " +  TABLE5 +  "(" + C_ID +"," + Name +") values(1,'Salary')");
         db.execSQL("insert into " +  TABLE5 +  "(" + C_ID +"," + Name +") values(2,'Pocket Money')");
         db.execSQL("insert into " +  TABLE5 +  "(" + C_ID +"," + Name +") values(3,'Repayment')");
+
+        db.execSQL("insert into " +  SUBCAT +  "(" + CATID +"," + CATNAME +"," + SUBCATNAME +") values(1,'Food','Breakfast')");
+        db.execSQL("insert into " +  SUBCAT +  "(" + CATID +"," + CATNAME +"," + SUBCATNAME +") values(2,'Food','Lunch')");
+        db.execSQL("insert into " +  SUBCAT +  "(" + CATID +"," + CATNAME +"," + SUBCATNAME +") values(3,'Food','Dinner')");
 
        // db.execSQL("insert into " +  TABLE4 +  "(" + ID1 +"," + DATE_T1 +"," + CATEGORY +"," + DETAIL +"," + STATUS +"," + EX_YEAR +"," + EX_MONTH +"," + AMOUNT1 +") values(1,'4-1-2016','Salary','md','paid','2017','1','5000')");
 
@@ -238,6 +254,93 @@ public class DBhelper extends SQLiteOpenHelper {
 
         return  res;
 
+    }
+
+    public ArrayList getCategoryDetail(String category)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[]columns=new String[]{ "_id","category","detail","amount1"};
+        Cursor c =db.query(TABLE3, columns, null, null, null, null, null, null);
+
+
+
+        ArrayList<String> expenses = new ArrayList<String>();
+
+
+
+
+        // looping through all rows and adding to list
+        String detail="";
+        if (c.moveToFirst()) {
+            do {
+
+                if(category.equals(c.getString((c.getColumnIndex("category")))))
+
+                {
+                    detail=(c.getString(c.getColumnIndex("detail")));
+
+
+                    expenses.add(detail);}
+            } while (c.moveToNext());
+        }
+        c.close();
+        return expenses;
+
+
+    }
+
+    public ArrayList<SubCategory> getSubCategories(String category){
+        ArrayList<SubCategory> arrayList = new ArrayList<SubCategory>(); //create a araaylist having objects in it
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("select *  from " + SUBCAT + " where " + CATNAME + " =  " + category, null); //cursor contain collection of data for particula query
+        while (c.moveToNext()) {
+            SubCategory subcat = new SubCategory(c.getInt(0),c.getString(1),c.getString(2)); //get the name of category and sub categoryand id
+            arrayList.add(subcat);//assign those names and id to the arraylist
+
+        }
+
+        return arrayList;
+    }
+
+    public double getTodaysIncome(){
+        SimpleDateFormat currentDate = new SimpleDateFormat("yyyy-M-dd");
+        Date todayDate = new Date();
+        String thisDate = currentDate.format(todayDate);
+
+        double amount;
+
+        String query = "SELECT SUM(amount1) FROM " + TABLE4 + " WHERE " + DATE_T1 + "= '"  + thisDate + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToNext()) {
+            amount = cursor.getDouble(0);
+        }
+        else {
+            return 1;
+        }
+        return amount;
+    }
+
+
+    public double getTodaysExpense(){
+        SimpleDateFormat currentDate = new SimpleDateFormat("yyyy-M-dd");
+        Date todayDate = new Date();
+        String thisDate = currentDate.format(todayDate);
+
+        double amount;
+
+        String query = "SELECT SUM(amount1) FROM " + TABLE3 + " WHERE " + DATE_T1 + "= '" + thisDate +"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToNext()) {
+            amount = cursor.getDouble(0);
+        }
+        else {
+            return 1;
+        }
+        return amount;
     }
 
 

@@ -139,6 +139,14 @@
             android:layout_alignLeft="@+id/txtDate"
             android:layout_alignStart="@+id/txtDate" />
 
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spnSubCat"
+            android:layout_below="@+id/txtDes"
+            android:layout_alignLeft="@+id/txtDes"
+            android:layout_alignStart="@+id/txtDes" />
+
     </RelativeLayout>
 
     <Button

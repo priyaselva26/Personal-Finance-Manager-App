@@ -29,7 +29,7 @@ public class Addexpense extends ActionBarActivity {
     EditText txtdescription;
     static TextView date;
     EditText txtRs;
-    Spinner spnCat;
+    Spinner spnCat,spnSubCat;
     Button btnSave;
     public static String SELECTED_DATE = null;
 
@@ -44,6 +44,7 @@ public class Addexpense extends ActionBarActivity {
         date = (TextView) findViewById(R.id.txtDate);
         btnSave = (Button) findViewById(R.id.btnSave);
         spnCat = (Spinner) findViewById(R.id.spnCat);
+        spnSubCat = (Spinner) findViewById(R.id.spnSubCat);
 
 
         helper = new DBhelper(this);
@@ -57,6 +58,11 @@ public class Addexpense extends ActionBarActivity {
 
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.spinner_row, R.id.tv, catStringArray); //set the items into the adapter
         spnCat.setAdapter(adapter); //set the adapter in to the spinner
+
+
+
+
+        setSubCat();
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -134,7 +140,7 @@ public class Addexpense extends ActionBarActivity {
         Calendar c = Calendar.getInstance();
         int month = c.get(Calendar.MONTH);
 
-        String rate = new DBhelper(getApplicationContext()).checkBudget(category,month+1);
+        String rate = new DBhelper(getApplicationContext()).checkBudget(category, month + 1);
 
         if (rate != null) {
             showMessage("Warning", rate + " Expenses are Exceeded");
@@ -171,6 +177,22 @@ public class Addexpense extends ActionBarActivity {
     public void pickDate(View v) {
         android.app.DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(), "datePicker");
+    }
+
+    public void setSubCat(){
+
+
+        helper = new DBhelper(this);
+
+        ArrayList<SubCategory> mArrayList = helper.getSubCategories("Food"); //set the category object into the arraylist
+
+        ArrayList<String> catStringArray = new ArrayList<String>();
+
+        for (SubCategory subcat : mArrayList)
+            catStringArray.add(subcat.getName()); //get the name from the id
+
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.spinner_subcat_row, R.id.subtv, catStringArray); //set the items into the adapter
+        spnSubCat.setAdapter(adapter); //set the adapter in to the spinner
     }
 
 
